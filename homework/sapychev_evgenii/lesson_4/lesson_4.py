@@ -8,5 +8,3 @@ my_dict['dict'].pop('key1', None) # не уверен, что оптимальн
 my_dict['set'].add(257)
 my_dict['set'].remove(0) # также можно использовать discard
 print(my_dict)
-
-
