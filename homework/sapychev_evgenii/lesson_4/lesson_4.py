@@ -7,5 +7,5 @@ my_dict['dict'].update({('i am a tuple', ): 'text'})
 my_dict['dict'].pop('key1', None)
 my_dict['set'].add(257)
 my_dict['set'].remove(0)
-#print(type['dict'](('i am a tuple', ))) Проверка на тип tuple
+# print(type['dict'](('i am a tuple', ))) Проверка на тип tuple
 print(my_dict)
