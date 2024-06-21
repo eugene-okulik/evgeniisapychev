@@ -8,5 +8,5 @@ for word in words:
         fin_word.append(word)
     else:
         word = word[:-1] + 'ing' + word[-1]
-        fin_word.append(word)
+fin_word.append(word)
 print(' '.join(fin_word))
