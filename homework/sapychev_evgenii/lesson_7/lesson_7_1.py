@@ -7,6 +7,6 @@ while True:
         break
     else:
         print('Попробуй еще раз')
-        continue            
+        continueы
 
 print('Молодец, угадал')
