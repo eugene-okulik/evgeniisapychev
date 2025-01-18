@@ -10,6 +10,7 @@ def progression(limit=100001):
         n1 = num
         count += 1
 
+
 count = 1
 for number in progression(10000000000000000000000000000000000000000):
     if count == 4:
