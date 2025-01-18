@@ -7,4 +7,3 @@ if bonus is True:
     print(f'Я готов выдать тебе зарплату с премией, возьми {salary}(True)')
 else:
     print('Премии не будет(False)')
-    
