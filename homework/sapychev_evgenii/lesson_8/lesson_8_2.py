@@ -1,8 +1,9 @@
-def progression(limit=100001):
+def progression(limit):
     n = 0
     n1 = 1
     num = 0
     count = 1
+    print(limit)
     while count < limit:
         yield num
         num = n1 + n
@@ -12,7 +13,7 @@ def progression(limit=100001):
 
 
 count = 1
-for number in progression(10000000000000000000000000000000000000000):
+for number in progression(100001):
     if count == 4:
         print(number)
     elif count == 199:
