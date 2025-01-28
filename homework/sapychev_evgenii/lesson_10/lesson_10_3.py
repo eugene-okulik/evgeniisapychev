@@ -25,7 +25,7 @@ def calc(first, second, operation):
         return first / second
     elif operation == '*':
         return first * second
-    
+
 
 first = int(input('Введи любое первое число'))
 second = int(input('Введи любое второе число'))

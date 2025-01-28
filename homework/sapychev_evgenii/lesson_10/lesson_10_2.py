@@ -7,7 +7,6 @@ def main_func(func):
         return wrapper()
     return repeat_me
 
-
 @main_func
 def example(text):
     print(text)
