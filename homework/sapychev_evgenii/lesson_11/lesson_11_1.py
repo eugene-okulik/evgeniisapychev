@@ -38,10 +38,10 @@ class textbook(Book):
     def info_subject_book(self):
         if self.book_reserved:
             print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет:'
-                   f'{self.school_subject}, класс: {self.school_subject_number_class}, зарезервирована')
+                  f'{self.school_subject}, класс: {self.school_subject_number_class}, зарезервирована')
         else:
             print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет:'
-                   f'{self.school_subject}, класс: {self.school_subject_number_class}')
+                  f'{self.school_subject}, класс: {self.school_subject_number_class}')
 
 
 book1 = Book('Идиот', 'Достоевский', 100, True)
