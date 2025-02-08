@@ -18,9 +18,11 @@ class Book():
 
     def info(self):
         if self.book_reserved:
-            print(f'Название: {self.book_name}, Автор: {self.bok_author}, {self.book_len}: 500, Материал: {self.material}, Зарезервирована')
+            print(f'Название: {self.book_name}, Автор: {self.bok_author}, {self.book_len}: 500, Материал:'
+                  f'{self.material}, Зарезервирована')
         else:
-            print(f'Название: {self.book_name}, Автор: {self.bok_author}, {self.book_len}: 500, Материал: {self.material}')
+            print(f'Название: {self.book_name}, Автор: {self.bok_author}, {self.book_len}: 500, Материал:'
+                  f'{self.material}')
 
 
 class textbook(Book):
@@ -35,9 +37,12 @@ class textbook(Book):
 
     def info_subject_book(self):
         if self.book_reserved:
-            print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет: {self.school_subject}, класс: {self.school_subject_number_class}, зарезервирована')
+            print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет:'
+                   f'{self.school_subject}, класс: {self.school_subject_number_class}, зарезервирована')
         else:
-            print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет: {self.school_subject}, класс: {self.school_subject_number_class}')
+            print(f'Название: {self.book_name}, Автор: {self.bok_author}, страниц: {self.book_len}, предмет:'
+                   f'{self.school_subject}, класс: {self.school_subject_number_class}')
+
 
 book1 = Book('Идиот', 'Достоевский', 100, True)
 book2 = Book('Война и мир', 'Толстой', 200, False)
@@ -49,5 +54,5 @@ subject_book2 = textbook('Теоретическая физика', 'Энште�
 subject_book3 = textbook('Млекопитающие', 'Гиппократ', 300, 'Биология', 8, False)
 
 
-book2.info()
-subject_book2.info_subject_book()
+book1.info()
+subject_book1.info_subject_book()
