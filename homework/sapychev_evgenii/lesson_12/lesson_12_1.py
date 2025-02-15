@@ -8,9 +8,9 @@ class Flower():
         self.price = price
 
     def __str__(self):
-        return f'{self.name}, Свежесть от 0 до 10 - {self.freshness},
-                цвет - {self.color}, длина стебля - {self.stem_lenght} см,
-                среднее время жизни - {self.life_time} дней, цена - {self.price}р.'
+        return (f'{self.name}, Свежесть от 0 до 10 - {self.freshness},'
+                f'цвет - {self.color}, длина стебля - {self.stem_lenght} см,'
+                f'среднее время жизни - {self.life_time} дней, цена - {self.price}р.')
 
 
 class Rose(Flower):
