@@ -12,18 +12,19 @@ with open(hw_file_path, 'r') as file:
     lines = file.readlines()
 
 
-processed_lines = []  
-date_objects = []     
+processed_lines = []
+date_objects = []
 for line in lines:
     if ' - ' in line:
         part_before_dash = line.split(' - ')[0]
         date_part = part_before_dash.split('. ', 1)[-1].strip()
-        processed_lines.append(date_part + '\n')  
+        processed_lines.append(date_part + '\n')
         try:
             date_obj = datetime.datetime.strptime(date_part, '%Y-%m-%d %H:%M:%S.%f')
             date_objects.append(date_obj)
-        except ValueError as e:
+        except ValueError as err:
             print('Ошибка')
+            raise err
 
 
 date_objects[0] = date_objects[0] + datetime.timedelta(weeks=1)
