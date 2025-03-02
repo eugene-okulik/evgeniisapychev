@@ -32,7 +32,7 @@ date_objects[1] = date_obj.strftime('%A')
 date_objects[2] = datetime.datetime.now() - date_objects[2]
 date_objects[2] = date_objects[2].days
 processed_lines[0] = f"{date_objects[0]}\n"
-processed_lines[1] = f"{date_objects[1]}\n" 
+processed_lines[1] = f"{date_objects[1]}\n"
 processed_lines[2] = f"{date_objects[2]} дней"
 
 
