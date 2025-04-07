@@ -2,13 +2,12 @@ import mysql.connector as mysql
 
 
 db = mysql.connect(
-    user = 'st-onl',
-    passwd = 'AVNS_tegPDkI5BlB2lW5eASC',
-    host = 'db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port = 25060,
-    database = 'st4'
+user = 'st-onl',
+passwd = 'AVNS_tegPDkI5BlB2lW5eASC',
+host = 'db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
+port = 25060,
+database = 'st4'
 )
-
 
 cursor = db.cursor()
 cursor.execute('INSERT INTO students (name, second_name) VALUES (%s, %s)', ('Sapychev', 'Probiu'))
@@ -35,11 +34,11 @@ s2 = cursor.execute("SELECT value FROM marks WHERE student_id = %s", (id_user,))
 all_marks = cursor.fetchall()
 s1 = cursor.execute("SELECT title FROM books WHERE taken_by_student_id  = %s", (id_user,))
 all_books = cursor.fetchall()
-s3 = cursor.execute('''SELECT * 
+s3 = cursor.execute('''SELECT *
 from students s2
 JOIN st4.marks m on s2.id = m.student_id
-JOIN st4.books b on s2.id = b.taken_by_student_id 
-JOIN st4.lessons l  on l.id  = m.lesson_id 
+JOIN st4.books b on s2.id = b.taken_by_student_id
+JOIN st4.lessons l  on l.id  = m.lesson_id
 JOIN st4.subjets s on s.id = l.subject_id
 where s2.id = %s''', (id_user,))
 last_req = cursor.fetchall()
