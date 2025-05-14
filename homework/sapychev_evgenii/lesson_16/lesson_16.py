@@ -13,6 +13,7 @@ db = mysql.connect(
     database=os.getenv('DB_NAME')
 )
 
+
 # csv
 def get_csv_qury(csv_path):
     with open(csv_path, newline='') as csv_file:
@@ -24,7 +25,8 @@ def get_csv_qury(csv_path):
 # sql
 def get_sql_qury():
     cursor = db.cursor(dictionary=True)
-    cursor.execute('''SELECT name, second_name, g.title as group_title, b.title as book_title, s2.title as subject_title, l.title as lesson_title, m.value as mark_value
+    cursor.execute('''SELECT name, second_name, g.title as group_title, b.title as book_title,
+                    s2.title as subject_title, l.title as lesson_title, m.value as mark_value
                     from students  as s
                     join `groups` as g  on s.group_id = g.id
                     join books as b on s.id = b.taken_by_student_id
@@ -33,12 +35,11 @@ def get_sql_qury():
                     join subjets as s2 on l.subject_id = s2.id''')
     data = cursor.fetchall()
     return data
-    
+
 
 csv_data = get_csv_qury('/Users/esapychev/PyLesson/homework/eugene_okulik/Lesson_16/hw_data/data.csv')
 sql_qury = get_sql_qury()
 
 common_items = [item for item in csv_data if item in sql_qury]
-print("Совпадающие записи:", common_items)
-
+print("Совпадения", common_items)
 db.close()
