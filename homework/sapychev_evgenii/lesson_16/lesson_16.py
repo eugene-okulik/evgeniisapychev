@@ -16,7 +16,7 @@ db = mysql.connect(
 
 # csv
 def get_csv_qury(csv_path):
-    with open(csv_path, newline='') as csv_file:
+    with open(csv_path, newline='', encoding='utf-8') as csv_file:
         file_data = csv.DictReader(csv_file)
         return list(file_data)
     print(file_data)
@@ -37,9 +37,9 @@ def get_sql_qury():
     return data
 
 
-csv_data = get_csv_qury('/Users/esapychev/PyLesson/homework/eugene_okulik/Lesson_16/hw_data/data.csv')
+csv_data = get_csv_qury('homework/eugene_okulik/Lesson_16/hw_data/data.csv')
 sql_qury = get_sql_qury()
 
-common_items = [item for item in csv_data if item in sql_qury]
-print("Совпадения", common_items)
+common_items = [item for item in csv_data if item not in sql_qury]
+print("Отличия", common_items)
 db.close()
