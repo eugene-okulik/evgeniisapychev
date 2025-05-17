@@ -26,7 +26,6 @@ def find_csv_file(filename="data.csv", folder_name=("hw_data")):
 
 
 def read_csv_data(csv_path):
-    """Reads CSV file using your specified processing"""
     with open(csv_path, newline='', encoding='utf-8') as csv_file:
         return list(csv.DictReader(csv_file))
     print(csv_file)
