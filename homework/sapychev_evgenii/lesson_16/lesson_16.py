@@ -14,9 +14,9 @@ db = mysql.connect(
     database=os.getenv('DB_NAME')
 )
 
+
 def find_csv_file(filename="data.csv", folder_name=("hw_data")):
     drives = ["C:/", "D:/"] if os.name == 'nt' else ["/"]
-    
     for drive in drives:
         for root, dirs, files in os.walk(drive):
             if folder_name in dirs:
@@ -44,6 +44,7 @@ def get_sql_qury():
                     join subjets as s2 on l.subject_id = s2.id''')
     data = cursor.fetchall()
     return data
+
 
 csv_path = find_csv_file()
 csv_data = read_csv_data(csv_path)
