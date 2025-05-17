@@ -1,7 +1,8 @@
-import dotenv
-import mysql.connector as mysql
 import os
 import csv
+from pathlib import Path
+import dotenv
+import mysql.connector as mysql
 
 dotenv.load_dotenv()
 
@@ -13,16 +14,24 @@ db = mysql.connect(
     database=os.getenv('DB_NAME')
 )
 
+def find_csv_file(filename="data.csv", folder_name=("hw_data")):
+    drives = ["C:/", "D:/"] if os.name == 'nt' else ["/"]
+    
+    for drive in drives:
+        for root, dirs, files in os.walk(drive):
+            if folder_name in dirs:
+                file_path = Path(root) / folder_name / filename
+                if file_path.exists():
+                    return file_path
 
-# csv
-def get_csv_qury(csv_path):
+
+def read_csv_data(csv_path):
+    """Reads CSV file using your specified processing"""
     with open(csv_path, newline='', encoding='utf-8') as csv_file:
-        file_data = csv.DictReader(csv_file)
-        return list(file_data)
-    print(file_data)
+        return list(csv.DictReader(csv_file))
+    print(csv_file)
 
 
-# sql
 def get_sql_qury():
     cursor = db.cursor(dictionary=True)
     cursor.execute('''SELECT name, second_name, g.title as group_title, b.title as book_title,
@@ -36,8 +45,8 @@ def get_sql_qury():
     data = cursor.fetchall()
     return data
 
-
-csv_data = get_csv_qury('homework/eugene_okulik/Lesson_16/hw_data/data.csv')
+csv_path = find_csv_file()
+csv_data = read_csv_data(csv_path)
 sql_qury = get_sql_qury()
 
 common_items = [item for item in csv_data if item not in sql_qury]
