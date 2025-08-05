@@ -1,48 +1,40 @@
+import argparse
+import re
 import os
-import sys
+from pathlib import Path
+
+
+def print_file_content(filename, search_word):
+    with open(filename, 'r', encoding='utf-8') as file:
+        for line_number, line in enumerate(file, 1):
+            word = re.findall(r'\b\w+\b', line, flags=re.IGNORECASE)
+            if search_word in word:
+                num_word = word.index(search_word)
+                num = max(0, num_word - 5)
+                num2 = min(num_word + 6, len(word))
+                context_word = word[num:num_word]
+                context_word2 = word[num_word + 1:num2]
+                context = ' '.join(context_word)
+                context2 = ' '.join(context_word2)
+                print(f'Файл {filename}, Строка {line_number}: ДО |{context}| {search_word.strip()} ПОСЛЕ |{context2}|')
+
+
+def path_process(directory, search_word):
+    for root, _, files in os.walk(directory):
+        for file in files:
+            file_path = Path(root) / file
+            if file_path.is_file():
+                print_file_content(file_path, search_word)
+
 
 def main():
-    if len(sys.argv) != 4 or sys.argv[2] != "--text":
-        sys.exit(1)
-    
-    folder_path = sys.argv[1]
-    search_text = sys.argv[3]
-    
-    try:
-        log_files = [f for f in os.listdir(folder_path) 
-                    if os.path.isfile(os.path.join(folder_path, f)) 
-                    and f.endswith('.log')]
-    except PermissionError: 
-        print(f"Не нашли файл '{folder_path}'")
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('directory', help='directory name')
+    parser.add_argument('-w', '--search_word', help='word for search', required=True)
+    args = parser.parse_args()
+    path = Path(args.directory)
+    path_process(path, args.search_word)
 
 
-    for log_file in log_files:
-        file_path = os.path.join(folder_path, log_file)
-        
-        try:
-            with open(file_path, 'r') as file:
-                line_number = 0
-                
-                for line in file:
-                    line_number += 1
-                    
-                    if search_text in line:
-                        words = line.split()
-                        try:
-                            index = words.index(search_text)
-                            start = max(0, index - 5)
-                            end = min(len(words), index + 6)
-                            context = ' '.join(words[start:end])
-                        except ValueError:
-                            context = line.strip()
-                         
-                        print(f"Файл: {log_file}, Строка: {line_number}")
-                        
-        except UnicodeDecodeError:
-            print(f"Ошибка: Файл '{log_file}' не является текстовым файлом в кодировке UTF-8")
-        except PermissionError:
-            print(f"Ошибка: Нет доступа к файлу '{log_file}'")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
