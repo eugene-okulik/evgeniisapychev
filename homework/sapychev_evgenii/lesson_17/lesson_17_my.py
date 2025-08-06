@@ -7,7 +7,7 @@ from pathlib import Path
 def print_file_content(filename, search_word):
     with open(filename, 'r', encoding='utf-8') as file:
         for line_number, line in enumerate(file, 1):
-            word = re.findall(r'\b\w+\b', line, flags=re.IGNORECASE)
+            word = re.findall(r'[^\s]+', line, flags=re.IGNORECASE)
             if search_word in word:
                 num_word = word.index(search_word)
                 num = max(0, num_word - 5)
