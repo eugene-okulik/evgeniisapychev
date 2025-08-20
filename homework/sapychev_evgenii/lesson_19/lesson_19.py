@@ -38,7 +38,7 @@ def patch_obj():
     }
     headers = {'Content-Type': 'application/json'}
     response = requests.patch(f'http://objapi.course.qa-practice.com/object/{create_id}', json=body,
-                            headers=headers).json()
+                              headers=headers).json()
     assert response['data'] == {'patch_1': 'p1', 'patch=2': 'p2', 'patch_3': 3}
     assert response['name'] == "Lesson_19_path", 'Name incorrect'
     clear_create_obj(create_id)
