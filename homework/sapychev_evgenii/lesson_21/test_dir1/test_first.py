@@ -2,6 +2,7 @@ import pytest
 import requests
 import allure
 
+
 @allure.feature("start_game")
 @allure.story("Posts")
 @pytest.mark.parametrize(
