@@ -44,4 +44,3 @@ def create_obj(request, base_url):
     post_id = response.json()["id"]
     yield post_id
     requests.delete(f"{base_url}/object/{post_id}")
-    
