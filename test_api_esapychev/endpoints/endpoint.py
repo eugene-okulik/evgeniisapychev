@@ -20,3 +20,8 @@ class Endpoint:
     def check_is_deleted(self, post_id, headers=None):
         self.response = requests.get(f"{self.url}/{post_id}", headers=headers)
         assert self.response.status_code == 404, "Объект не существует"
+
+    @allure.step("Check that status code is 200")
+    def check_status_code(self, post_id, headers=None):
+        self.response = requests.get(f"{self.url}/{post_id}", headers=headers)
+        assert self.response.status_code == 200, "Status code 200"

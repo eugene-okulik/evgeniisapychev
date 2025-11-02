@@ -1,34 +1,33 @@
 import pytest
-import allure
 
-from endpoints.create_p import CreatePosts
-from endpoints.delete_p import DeletePosts
-from endpoints.patch_p import PatchPost
-from endpoints.put_p import PutPost
-
-
-@pytest.fixture()
-def created_post_endpoint():
-    return CreatePosts()
+from endpoints.create_p import CreateObj
+from endpoints.delete_p import DeleteObj
+from endpoints.patch_p import PatchObj
+from endpoints.put_p import PutObj
 
 
 @pytest.fixture()
-def delete_post_endpoint():
-    return DeletePosts()
+def created_endpoint():
+    return CreateObj()
 
 
 @pytest.fixture()
-def patch_post_endpoint():
-    return PatchPost()
+def delete_endpoint():
+    return DeleteObj()
 
 
 @pytest.fixture()
-def put_post_endpoint():
-    return PutPost()
+def patch_endpoint():
+    return PatchObj()
 
 
 @pytest.fixture()
-def put_and_patch_endpoint(created_post_endpoint, delete_post_endpoint):
+def put_endpoint():
+    return PutObj()
+
+
+@pytest.fixture()
+def temporary_post(created_endpoint, delete_endpoint):
     payload = {
         "data": {
             "Column1": "Удалим с помощью DELETE и изменим с помощью PATCH и PUT",
@@ -37,10 +36,10 @@ def put_and_patch_endpoint(created_post_endpoint, delete_post_endpoint):
         },
         "name": "Урок 22, УУдалим с помощью DELETE и изменим с помощью PATCH и PUT",
     }
-    created_post_endpoint.create_new_post(payload)
-    post_id = created_post_endpoint.post_id
+    created_endpoint.create_new_obj(payload)
+    post_id = created_endpoint.post_id
     yield post_id
-    delete_post_endpoint.delete_post(post_id)
+    delete_endpoint.delete_obj(post_id)
 
 
 @pytest.fixture(scope="session")

@@ -5,8 +5,8 @@ from endpoints.endpoint import Endpoint
 
 
 @allure.step("Patch post")
-class PatchPost(Endpoint):
-    def patch_post(self, post_id, payload, headers=None):
+class PatchObj(Endpoint):
+    def patch_obj(self, post_id, payload, headers=None):
         self.response = requests.patch(
             f"{self.url}/{post_id}",
             json=payload,
