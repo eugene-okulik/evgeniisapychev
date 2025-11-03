@@ -5,8 +5,8 @@ from endpoints.endpoint import Endpoint
 
 
 @allure.step("Create new post")
-class CreatePosts(Endpoint):
-    def create_new_post(self, payload, headers=None):
+class CreateObj(Endpoint):
+    def create_new_obj(self, payload, headers=None):
         self.response = requests.post(
             self.url,
             json=payload,

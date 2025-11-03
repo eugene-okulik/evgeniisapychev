@@ -17,13 +17,14 @@ DATA = [
 
 
 @pytest.mark.parametrize("data", DATA)
-def test_create_obj(created_post_endpoint, data, delete_post_endpoint, start_srop, every_test):
-    created_post_endpoint.create_new_post(payload=data)
-    created_post_endpoint.check_data(data["data"])
-    created_post_endpoint.check_name(data["name"])
-    delete_post_endpoint.delete_post(created_post_endpoint.post_id)
+def test_create_obj(created_endpoint, data, delete_endpoint, start_srop, every_test):
+    created_endpoint.create_new_obj(payload=data)
+    created_endpoint.check_data(data["data"])
+    created_endpoint.check_name(data["name"])
+    created_endpoint.check_status_code(created_endpoint.post_id)
+    delete_endpoint.delete_obj(created_endpoint.post_id)
 
 
-def test_delete_obj(put_and_patch_endpoint, delete_post_endpoint, every_test):
-    delete_post_endpoint.delete_post(put_and_patch_endpoint)
-    delete_post_endpoint.check_is_deleted(put_and_patch_endpoint)
+def test_delete_obj(temporary_post, delete_endpoint, every_test):
+    delete_endpoint.delete_obj(temporary_post)
+    delete_endpoint.check_is_deleted(temporary_post)

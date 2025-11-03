@@ -5,8 +5,8 @@ from endpoints.endpoint import Endpoint
 
 
 @allure.step("Put post")
-class PutPost(Endpoint):
-    def put_post(self, post_id, payload, headers=None):
+class PutObj(Endpoint):
+    def put_obj(self, post_id, payload, headers=None):
         self.response = requests.put(
             f"{self.url}/{post_id}",
             json=payload,
